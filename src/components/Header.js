@@ -7,7 +7,7 @@ const Heading = styled.div`
   background-color: red;
   display: flex;
   justify-content: space-around;
-  padding-left: 800px;
+  padding-left: 40%;
   align-items: center;
 `;
 

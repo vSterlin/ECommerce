@@ -16,15 +16,20 @@ export const handleClick = async (cart, stripePromise) => {
   const { error } = await stripe.redirectToCheckout({
     lineItems,
     mode: "payment",
-    successUrl: "https://example.com/success",
-    cancelUrl: "http://localhost:8000",
+    successUrl: "http://localhost:8000/success",
+    cancelUrl: "http://localhost:8000/",
     billingAddressCollection: "required",
     shippingAddressCollection: {
       allowedCountries: ["US"],
     },
   });
+  if(error) {
 
+    alert(error.message);
+  }
+  
   // If `redirectToCheckout` fails due to a browser or network
   // error, display the localized error message to your customer
   // using `error.message`.
 };
+

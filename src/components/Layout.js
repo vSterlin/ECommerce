@@ -11,13 +11,16 @@ const Global = createGlobalStyle`
   }
 `;
 
+const App = styled.div`
+`;
+
 const Layout = ({ children }) => {
   return (
-    <div>
+    <App>
       <Global />
       <Header />
       {children}
-    </div>
+    </App>
   );
 };
 

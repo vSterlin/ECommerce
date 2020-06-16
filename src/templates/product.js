@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 
 import Layout from "../components/Layout";
-
-import {handleClick} from '../utils/util';
-
-import { loadStripe } from "@stripe/stripe-js";
-
-const stripePromise = loadStripe("pk_test_e6C9ERAGdcn9rxWZx0QT8TU900WUnFSMpL");
 
 ////////////
 
 export const data = graphql`
   query($productId: String) {
-    stripePrice(product: { eq: $productId }) {
-      product
+    stripePrice(product: { id: { eq: $productId } }) {
+      product{
+        name
+      }
       id
     }
   }
 `;
-
-
 
 ////////////
 
@@ -56,20 +50,19 @@ const Product = ({ pageContext, data }) => {
   return (
     <Layout>
       <h1>
-        ID of {`${pageContext.productName} is ${data.stripePrice.product}`}
+       {pageContext.productName}
       </h1>
 
       <button
         onClick={() => {
-          addToCart(data.stripePrice.id, data.stripePrice.product);
+          addToCart(data.stripePrice.id, data.stripePrice.product.name);
         }}
       >
         Add to Cart
       </button>
-      <button role="link" onClick={() => handleClick(cart, stripePromise)}>
-        {/* <button role="link" onClick={() => handleClick(data.stripePrice.id)}> */}
-        Buy {pageContext.productName}
-      </button>
+      <Link to="/cart">
+        <button>Go to Cart</button>
+      </Link>
     </Layout>
   );
 };
