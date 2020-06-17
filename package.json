@@ -25,7 +25,7 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby-plugin-styled-components": "^3.3.4",
-    "gatsby-source-stripe": "^3.1.0",
+    "gatsby-source-stripe": "github:vSterlin/gatsby-source-stripe",
     "prettier": "2.0.5"
   },
   "keywords": [
