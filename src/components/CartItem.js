@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Img from "gatsby-image";
-import CartContext from "../context/CartContext";
 
 const Image = styled(Img)`
   width: 100px;

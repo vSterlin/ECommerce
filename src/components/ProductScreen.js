@@ -1,9 +1,10 @@
 import React from "react";
 
-import { graphql } from "gatsby";
-import Layout from "../components/Layout";
-import ProductScreen from "../components/ProductScreen";
-import CartContext from "../context/CartContext";
+import { Link, graphql } from "gatsby";
+import styled from "styled-components";
+import Img from "gatsby-image";
+
+////////////
 
 export const data = graphql`
   query($productId: String) {
@@ -20,38 +21,42 @@ export const data = graphql`
 
     stripeProduct(id: { eq: $productId }) {
       image: localFiles {
-              childImageSharp {
-                fluid(quality: 10) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
+        childImageSharp {
+          fluid(quality: 10) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
     }
   }
 `;
 
+const Image = styled(Img)`
+  width: 100px;
+`;
 
-const Product = ({ pageContext, data }) => {
-  // const [cart, setCart] = useState({});
-  // // const [quantity, setQuantity] = useState(1);
+////////////
 
-  // const addToCart = (item, name) => {
-  //   let newObj = { ...cart };
-  //   if (item in newObj) {
-  //     newObj[item].quantity = newObj[item].quantity + 1;
-  //   } else {
-  //     newObj[item] = {
-  //       quantity: 1,
-  //       name,
-  //     };
-  //   }
-  //   setCart({ ...newObj });
-  // };
+const ProductScreen = ({ pageContext, data , context}) => {
+  const {cart, setCart} = context;
+  // const [quantity, setQuantity] = useState(1);
+
+  const addToCart = (item, name) => {
+    let newObj = { ...cart };
+    if (item in newObj) {
+      newObj[item].quantity = newObj[item].quantity + 1;
+    } else {
+      newObj[item] = {
+        quantity: 1,
+        name,
+      };
+    }
+    setCart({ ...newObj });
+  };
 
   ///////////////////////////
 
   // useEffect(() => {
-
   //   const startCart = localStorage.getItem("cart");
   //   if (startCart !== null) {
   //     setCart(JSON.parse(startCart));
@@ -65,10 +70,8 @@ const Product = ({ pageContext, data }) => {
   ///////////////////////////
 
   return (
-    <CartContext.Consumer>
-
-{context => (    <Layout>
-      {/* <Image fluid={data.stripeProduct.image[0].childImageSharp.fluid} />
+    <>
+      <Image fluid={data.stripeProduct.image[0].childImageSharp.fluid} />
       <h1>{pageContext.productName}</h1>
       {data.stripePrice.product.metadata.stock === "no" ? (
         <button disabled>Cannot Add to Cart</button>
@@ -84,12 +87,9 @@ const Product = ({ pageContext, data }) => {
 
       <Link to="/cart">
         <button>Go to Cart</button>
-      </Link> */}
-      <ProductScreen pageContext={pageContext} data={data} context={context}/>
-    </Layout>)}
-    </CartContext.Consumer>
-
+      </Link>
+    </>
   );
 };
 
-export default Product;
+export default ProductScreen;
