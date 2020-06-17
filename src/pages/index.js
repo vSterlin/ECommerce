@@ -1,39 +1,39 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 
+import styled from "styled-components";
+
+import BackgroundImage from "gatsby-background-image";
+
 import Layout from "../components/Layout";
 
+const Background = styled(BackgroundImage)`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+  const { image } = useStaticQuery(graphql`
     query {
-      allStripeProduct {
-        edges {
-          node {
-            name
-            id
-            metadata {
-              stock
-            }
+      image: file(relativePath: { eq: "background.jpg" }) {
+        childImageSharp {
+          fluid(quality: 90) {
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
   `);
 
-  const products = data.allStripeProduct.edges;
   return (
     <Layout>
-      {products.map(({ node }) => {
-        return (
-          <>
-            <h1>
-              {node.name} - {node.metadata.stock}
-            </h1>
-
-            <Link to={node.id}>More about {node.name}</Link>
-          </>
-        );
-      })}
+      <Background fluid={image.childImageSharp.fluid}>
+        <Link to="/products">
+          <button>Order Online!</button>
+        </Link>
+      </Background>
     </Layout>
   );
 };

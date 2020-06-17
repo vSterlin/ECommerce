@@ -17,7 +17,7 @@ export const handleClick = async (cart, stripePromise) => {
     lineItems,
     mode: "payment",
     successUrl: "http://localhost:8000/success",
-    cancelUrl: "http://localhost:8000/",
+    cancelUrl: "http://localhost:8000/cart",
     billingAddressCollection: "required",
     shippingAddressCollection: {
       allowedCountries: ["US"],

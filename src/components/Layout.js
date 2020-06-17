@@ -4,6 +4,8 @@ import styled, { createGlobalStyle } from "styled-components";
 
 import Header from "./Header";
 
+import CartContext from "../context/CartContext";
+
 const Global = createGlobalStyle`
   * {
     margin: 0;
@@ -11,14 +13,14 @@ const Global = createGlobalStyle`
   }
 `;
 
-const App = styled.div`
-`;
+const App = styled.div``;
 
 const Layout = ({ children }) => {
   return (
     <App>
       <Global />
-      <Header />
+
+      {/* <Header /> */}
       {children}
     </App>
   );

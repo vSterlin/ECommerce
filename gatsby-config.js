@@ -5,7 +5,6 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
@@ -20,9 +19,10 @@ module.exports = {
     {
       resolve: `gatsby-source-stripe`,
       options: {
-        objects: ['Product', 'Price', 'Charge'],
+        objects: ["Product", "Price"],
         secretKey: process.env.SECRET_KEY,
-      }
+        downloadFiles: true
+      },
     },
 
     {
@@ -42,4 +42,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
