@@ -28,9 +28,14 @@ const CartList = ({ context }) => {
           }
         }
       }
-      site {
-      host
+      allSite {
+        edges {
+          node {
+            host
       port
+          }
+        }
+
     }
     }
   `);
@@ -131,7 +136,7 @@ const CartList = ({ context }) => {
         })}
       </ul>
       {cartArray.length !== 0 && (
-        <button role="link" onClick={() => handleClick(cart, stripePromise, data.site)}>
+        <button role="link" onClick={() => handleClick(cart, stripePromise, data.allSite.edges[0].node)}>
           Buy
         </button>
       )}
