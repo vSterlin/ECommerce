@@ -9,6 +9,8 @@ import { useStaticQuery, graphql } from "gatsby";
 
 const stripePromise = loadStripe("pk_test_e6C9ERAGdcn9rxWZx0QT8TU900WUnFSMpL");
 
+
+
 const CartList = ({ context }) => {
   const data = useStaticQuery(graphql`
     query {
@@ -26,6 +28,10 @@ const CartList = ({ context }) => {
           }
         }
       }
+      site {
+      host
+      port
+    }
     }
   `);
 
@@ -125,7 +131,7 @@ const CartList = ({ context }) => {
         })}
       </ul>
       {cartArray.length !== 0 && (
-        <button role="link" onClick={() => handleClick(cart, stripePromise)}>
+        <button role="link" onClick={() => handleClick(cart, stripePromise, data.site)}>
           Buy
         </button>
       )}
