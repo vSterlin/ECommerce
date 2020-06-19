@@ -6,6 +6,7 @@ import { handleClick } from "../utils/util";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { useStaticQuery, graphql } from "gatsby";
+import { useLocation } from "@reach/router";
 
 const stripePromise = loadStripe("pk_test_e6C9ERAGdcn9rxWZx0QT8TU900WUnFSMpL");
 
@@ -28,22 +29,14 @@ const CartList = ({ context }) => {
           }
         }
       }
-      allSite {
-        edges {
-          node {
-            host
-      port
-          }
-        }
 
-    }
     }
   `);
 
   const { cart, setCart } = context;
   const [cartArray, setCartArray] = useState([]);
   const [total, setTotal] = useState(0);
-
+  const [location] = useState(useLocation());
   //   useEffect(() => {
   //     let totalItems = 0;
   //     for (const i in cart) {
@@ -51,6 +44,11 @@ const CartList = ({ context }) => {
   //     }
   // setTotal(totalItems)
   //  }, []);
+
+  // useEffect(() => {
+  //   setLocation(useLocation()) 
+
+  // }, [])
 
   useEffect(() => {
     const lineItems = [];
@@ -136,7 +134,7 @@ const CartList = ({ context }) => {
         })}
       </ul>
       {cartArray.length !== 0 && (
-        <button role="link" onClick={() => handleClick(cart, stripePromise, data.allSite.edges[0].node)}>
+        <button role="link" onClick={() => handleClick(cart, stripePromise, location.origin)}>
           Buy
         </button>
       )}

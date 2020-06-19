@@ -1,3 +1,4 @@
+
 const buyArray = (items) => {
   const lineItems = [];
   for (const i in items) {
@@ -6,10 +7,11 @@ const buyArray = (items) => {
   return lineItems;
 };
 
-export const handleClick = async (cart, stripePromise, site) => {
+export const handleClick = async (cart, stripePromise, location) => {
   // When the customer clicks on the button, redirect them to Checkout.
-  const { host, port } = site;
-  const siteName = `${port==="8000" ? `http://` : `https://`}${host}${port ? `:${port}` : ``}`;
+
+
+  // const siteName = `http://localhost:8000`;
   const lineItems = buyArray(cart);
 
   // console.log(lineItems);
@@ -18,8 +20,8 @@ export const handleClick = async (cart, stripePromise, site) => {
   const { error } = await stripe.redirectToCheckout({
     lineItems,
     mode: "payment",
-    successUrl: `${siteName}/success`,
-    cancelUrl: `${siteName}/cart`,
+    successUrl: `${location}/success`,
+    cancelUrl: `${location}/cart`,
     billingAddressCollection: "required",
     shippingAddressCollection: {
       allowedCountries: ["US"],
