@@ -8,7 +8,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useStaticQuery, graphql } from "gatsby";
 import { useLocation } from "@reach/router";
 
-const stripePromise = loadStripe("pk_test_e6C9ERAGdcn9rxWZx0QT8TU900WUnFSMpL");
+const stripePromise = loadStripe("pk_test_51H1IPrKfmz5fDZBxVJ83YhYkjrkSHXo7SYyMgzqdWFQ5cqGICNlu0TqBq5priqVi13h3seDoGyKCCR1K4SC8gEg500pC1Tuz5O");
 
 
 

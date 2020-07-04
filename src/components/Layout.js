@@ -2,13 +2,14 @@ import React from "react";
 
 import styled, { createGlobalStyle } from "styled-components";
 
-// import Header from "./Header";
+import Header from "./Header";
 
 
 const Global = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 `;
 
@@ -19,7 +20,7 @@ const Layout = ({ children }) => {
     <App>
       <Global />
 
-      {/* <Header /> */}
+      <Header />
       {children}
     </App>
   );

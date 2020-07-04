@@ -35,3 +35,8 @@ export const handleClick = async (cart, stripePromise, location) => {
   // error, display the localized error message to your customer
   // using `error.message`.
 };
+
+
+export const convertToDollars = (decimal) => {
+  return Number(decimal / 100).toFixed(2);
+}
