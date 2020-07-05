@@ -4,6 +4,8 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 
 import Img from "gatsby-image";
+
+import { InfoCircle } from "@styled-icons/boxicons-regular"
 import { convertToDollars } from "../utils/util";
 
 const Card = styled.div`
@@ -15,6 +17,7 @@ const Card = styled.div`
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  margin: 0 auto;
 `;
 
 const Image = styled(Img)`
@@ -23,18 +26,34 @@ const Image = styled(Img)`
   position: relative;
 `;
 
-const InfoIcon = styled.div`
-  /* width: 20px;
-  height: 20px; */
-  background-color: white;
+const InfoIcon = styled(InfoCircle)`
+  width: 20px;
+  height: 20px;
   position: absolute;
   right: 10px;
   top: 10px;
   z-index: 1;
+  color: white;
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+  border-radius: 100px;
+  &::after {
+    content: 'x';
+    background-color: red;
+    z-index: 10;
+    width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: block;
+  }
 `;
 
 const CardInfo = styled.div`
-  background-color: black;
+  background-color: grey;
   color: white;
   margin-top: 20px;
   text-align: center;
@@ -70,13 +89,13 @@ const ProductCard = (props) => {
   }, []);
   return (
     <Card>
-      <InfoIcon>i</InfoIcon>
+      <InfoIcon />
       <Image fluid={props.image} />
       <CardInfo>
-        <h1>
-          {props.name} - ${convertToDollars(price)}
+        <h3>
+          {props.name}<br />${convertToDollars(price)}
           {/* {props.stock === "no" ? " - Out Of Stock" : null} */}
-        </h1>
+        </h3>
 
         <Link to={props.id}>More about {props.name}</Link>
       </CardInfo>
