@@ -123,6 +123,7 @@ const IndexPage = () => {
           node {
             name
             id
+            description
             metadata {
               stock
             }
@@ -189,6 +190,7 @@ const IndexPage = () => {
                   name={node.name}
                   stock={node.metadata.stock}
                   image={node.image[0].childImageSharp.fluid}
+                  description={node.description}
                 />
             );
           })}
