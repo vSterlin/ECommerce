@@ -40,7 +40,6 @@ const Image = styled(Img)`
 const ProductScreen = ({ pageContext, data , context}) => {
   const {cart, setCart} = context;
   // const [quantity, setQuantity] = useState(1);
-
   const addToCart = (item, name) => {
     let newObj = { ...cart };
     if (item in newObj) {
