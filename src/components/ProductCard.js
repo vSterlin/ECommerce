@@ -19,12 +19,20 @@ const Card = styled.div`
   overflow: hidden;
   position: relative;
   margin: 0 auto;
+  @media only screen and (max-width: 768px) {
+    width: 70vw;
+
+  }
 `;
 
 const Image = styled(Img)`
   height: 15vw;
   width: 15vw;
   position: relative;
+  @media only screen and (max-width: 768px) {
+    height: 70vw;
+    width: 70vw;
+  }
 `;
 
 const InfoIcon = styled(InfoCircle)`
