@@ -9,8 +9,11 @@ import { InfoCircle } from "@styled-icons/boxicons-regular";
 import { CloseCircle } from "@styled-icons/ionicons-outline";
 import { convertToDollars } from "../utils/util";
 
+const desktopImageSize = "15vw";
+const phoneImageSize = "60vw";
+
 const Card = styled.div`
-  width: 15vw;
+  width: ${desktopImageSize};
   /* height: 350px; */
   display: flex;
   flex-direction: column;
@@ -20,18 +23,18 @@ const Card = styled.div`
   position: relative;
   margin: 0 auto;
   @media only screen and (max-width: 768px) {
-    width: 70vw;
+    width: ${phoneImageSize};
 
   }
 `;
 
 const Image = styled(Img)`
-  height: 15vw;
-  width: 15vw;
+  height: ${desktopImageSize};
+  width: ${desktopImageSize};
   position: relative;
   @media only screen and (max-width: 768px) {
-    height: 70vw;
-    width: 70vw;
+    height: ${phoneImageSize};
+    width: ${phoneImageSize};
   }
 `;
 
@@ -85,9 +88,10 @@ const CardOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   right: 0;
-  width: 15vw;
-  height: 15vw;
+  width: ${desktopImageSize};
+  height: ${desktopImageSize};
   transform: scale(0, 0);
+
 
   z-index: 2;
   position: absolute;
@@ -96,7 +100,7 @@ const CardOverlay = styled.div`
       /* height: 0%;
       width: 0%; */
       transform: scale(0, 0);
-      border-radius: 15vw;
+      border-radius: ${phoneImageSize};
     }
     to {
       /* height: 15vw;
@@ -109,6 +113,10 @@ const CardOverlay = styled.div`
 
   ${({ info }) =>
     info === true ? "animation: slideTopRight 0.1s linear forwards;" : ""}
+    @media only screen and (max-width: 768px) {
+      width: ${phoneImageSize};
+  height: ${phoneImageSize};
+    }
 `;
 
 const MoreInfo = styled.div`
