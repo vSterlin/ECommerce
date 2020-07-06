@@ -151,7 +151,7 @@ const getPrice = (name, priceArray, setState) => {
 const ProductCard = (props) => {
   const { allStripePrice } = useStaticQuery(graphql`
     query {
-      allStripePrice {
+      allStripePrice (filter: {active: {eq: true}}){
         edges {
           node {
             product {

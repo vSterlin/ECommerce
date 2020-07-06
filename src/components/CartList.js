@@ -15,7 +15,7 @@ const stripePromise = loadStripe("pk_test_51H1IPrKfmz5fDZBxVJ83YhYkjrkSHXo7SYyMg
 const CartList = ({ context }) => {
   const data = useStaticQuery(graphql`
     query {
-      allStripeProduct {
+      allStripeProduct (filter: {active: {eq: true}}){
         edges {
           node {
             name
@@ -29,6 +29,15 @@ const CartList = ({ context }) => {
           }
         }
       }
+      # allStripePrice (filter: {active: {eq: true}}){
+      #   edges {
+      #     node {
+      #       product {
+      #         name
+      #       }
+      #     }
+      #   }
+      # }
 
     }
   `);
@@ -54,9 +63,10 @@ const CartList = ({ context }) => {
     const lineItems = [];
     let totalItems = 0;
     const products = data.allStripeProduct.edges;
-
+    // const activePrices = data.allStripePrice.edges;
     for (const i in cart) {
       for (const j in products) {
+        
         if (products[j].node.name === cart[i].name) {
           lineItems.push({
             price: i,

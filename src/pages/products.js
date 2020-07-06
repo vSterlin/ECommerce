@@ -11,7 +11,7 @@ const ProductBox = styled.div`
 const Products = () => {
   const data = useStaticQuery(graphql`
     query {
-      allStripeProduct {
+      allStripeProduct (filter: {active: {eq: true}}){
         edges {
           node {
             name

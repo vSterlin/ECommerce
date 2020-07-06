@@ -118,7 +118,7 @@ const IndexPage = () => {
         }
       }
 
-      allStripeProduct(sort: { fields: created, order: DESC }, limit: 4) {
+      allStripeProduct(sort: { fields: created, order: DESC }, limit: 4, filter: {active: {eq: true}}) {
         edges {
           node {
             name

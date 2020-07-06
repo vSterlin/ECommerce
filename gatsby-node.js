@@ -18,7 +18,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       query {
-        allStripeProduct {
+        allStripeProduct (filter: {active: {eq: true}}){
           edges {
             node {
               name
