@@ -6,30 +6,30 @@ import Img from "gatsby-image";
 
 ////////////
 
-export const data = graphql`
-  query($productId: String) {
-    stripePrice(product: { id: { eq: $productId } }) {
-      product {
-        name
-        id
-        metadata {
-          stock
-        }
-      }
-      id
-    }
+// export const data = graphql`
+//   query($productId: String) {
+//     stripePrice(product: { id: { eq: $productId } }) {
+//       product {
+//         name
+//         id
+//         metadata {
+//           stock
+//         }
+//       }
+//       id
+//     }
 
-    stripeProduct(id: { eq: $productId }) {
-      image: localFiles {
-        childImageSharp {
-          fluid(quality: 10) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-    }
-  }
-`;
+//     stripeProduct(id: { eq: $productId }) {
+//       image: localFiles {
+//         childImageSharp {
+//           fluid(quality: 10) {
+//             ...GatsbyImageSharpFluid_withWebp
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 const Image = styled(Img)`
   width: 100px;
