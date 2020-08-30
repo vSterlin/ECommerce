@@ -1,1 +1,1 @@
-A Honey Store.
+# A Honey Store built using Gatsby and Stripe
